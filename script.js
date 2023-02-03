@@ -84,3 +84,13 @@ numPad.map(button => {
         }
     });
 });
+
+let operatorKeys = Array.from(document.querySelectorAll('.operator'));
+
+operatorKeys.map(button => {
+    button.addEventListener('click', e => {
+        num2.setActive();
+        num1.setActive();
+        return e.target.innerText;
+    });
+});
