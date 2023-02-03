@@ -1,0 +1,35 @@
+(Stored numbers/operands)
+Create an object for an operand
+Make a key that stores the object's value
+Make a key that indicates if this is the current number being edited
+Make a method that can set the object's value
+Make a method that clears the object's value
+
+When an operator is present, the active number should switch to the second number
+When an operator is not present, the active number should switch to the first number
+
+(Add function)
+Declare a function that takes two numbers as parameters (x, y)
+Return the result of x + y
+
+(Subtract function)
+Declare a function that takes two numbers as parameters (x, y)
+Return the result of x - y
+
+(Multiply function)
+Declare a function that takes two numbers as parameters (x, y)
+Return the result of x * y
+
+(Divide function)
+Declare a function that takes two numbers as parameters (x, y)
+Return the result of x / y
+
+(Operate function)
+Declare a function that takes two numbers and an operator(s) as arguments (x, y, operator(s))
+Convert the two string numbers into real numbers
+Depending on the given operator:
+Run Add function if "+" was given with x and y as the numbers
+Run Subtract function if "-" was given with x and y as the numbers
+Run Multiply function if "*" was given with x and y as the numbers
+Run Divide function if "/" was given with x and y as the numbers
+Return the result
