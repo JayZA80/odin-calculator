@@ -1,3 +1,5 @@
+let result = undefined;
+
 const display = {
     value: document.querySelector('.displayScreen'),
     append: function(string) {
@@ -12,13 +14,6 @@ let num1 = {
     active: true,
     setValue: function(num) {
         this.value = num;
-    },
-    setActive: function() {
-        if (this.active === true) {
-            this.active = false;
-        } else {
-            this.active = true;
-        }
     }
 }
 
@@ -27,13 +22,6 @@ let num2 = {
     active: false,
     setValue: function(num) {
         this.value = num;
-    },
-    setActive: function() {
-        if (this.active === true) {
-            this.active = false;
-        } else {
-            this.active = true;
-        }
     }
 }
 
@@ -77,7 +65,6 @@ const divide = (x, y) => {
 const operate = (x, y, operator) => {
     let firstNum = parseInt(x);
     let secondNum = parseInt(y);
-    let result = undefined;
     switch (operator) {
         case '+':
             result = add(firstNum, secondNum);
@@ -121,8 +108,12 @@ let operatorKeys = Array.from(document.querySelectorAll('.operator'));
 
 operatorKeys.map(button => {
     button.addEventListener('click', e => {
-        num2.setActive();
-        num1.setActive();
+        if (result !== undefined) {
+            num1.value = result;
+            num2.value = undefined;
+        }
+        num2.active = true;
+        num1.active = false;
         operator.setValue(e.target.innerText);
     });
 });
