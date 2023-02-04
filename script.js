@@ -1,18 +1,12 @@
-let expression = {
-    value: undefined,
-    display: document.querySelector('.displayScreen'),
-    updateVal: function(string) {
-        if (this.value === undefined) {
-            this.value = string;
-        } else {
-            this.value += string;
-        }
+const display = {
+    value: document.querySelector('.displayScreen'),
+    append: function(string) {
+        this.value.innerText += string;
     },
-    updateDisplay: function(string) {
-        this.display.innerText += string;
+    update: function(string) {
+        this.value.innerText = string;
     }
 }
-
 let num1 = {
     value: undefined,
     active: true,
@@ -45,6 +39,9 @@ let num2 = {
 
 let operator = {
     value: undefined,
+    setValue: function(string) {
+        this.value = string;
+    },
     isPresent: function(string) {
         switch (string) {
             case (string.includes('+')):
@@ -80,22 +77,24 @@ const divide = (x, y) => {
 const operate = (x, y, operator) => {
     let firstNum = parseInt(x);
     let secondNum = parseInt(y);
+    let result = undefined;
     switch (operator) {
-        case (operator === '+'):
-            add(firstNum, secondNum);
+        case '+':
+            result = add(firstNum, secondNum);
             break;
-        case (operator === '-'):
-            subtract(firstNum, secondNum);
+        case '-':
+            result = subtract(firstNum, secondNum);
             break;
-        case (operator === '*'):
-            multiply(firstNum, secondNum);
+        case '*':
+            result = multiply(firstNum, secondNum);
             break;
-        case (operator === '/'):
-            divide(firstNum, secondNum);
+        case '/':
+            result = divide(firstNum, secondNum);
             break;
         default:
-            console.log('Something went wrong with calculating...');
+            result = console.log('Something went wrong with calculating...');
     }
+    display.update(result.toString());
 }
 
 let numPad = Array.from(document.querySelectorAll('.number'));
@@ -124,7 +123,7 @@ operatorKeys.map(button => {
     button.addEventListener('click', e => {
         num2.setActive();
         num1.setActive();
-        return e.target.innerText;
+        operator.setValue(e.target.innerText);
     });
 });
 
@@ -132,7 +131,11 @@ let eqKeys = Array.from(document.querySelectorAll('.equation'));
 
 eqKeys.map(button => {
     button.addEventListener('click', e => {
-        expression.updateVal(e.target.innerText);
-        expression.updateDisplay(e.target.innerText);
+        display.append(e.target.innerText);
     });
+});
+
+let operateBtn = document.querySelector('.operate');
+operateBtn.addEventListener('click', () => {
+    operate(num1.value, num2.value, operator.value);
 });
