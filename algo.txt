@@ -7,6 +7,10 @@ Make a method that clears the object's value
 
 When an operator is present, the active number should switch to the second number
 When an operator is not present, the active number should switch to the first number
+(Operator)
+Create an object for an operator
+Make a key that stores the object's value
+Make a method that returns true or false to check if an operator is present in the operation
 
 (Add function)
 Declare a function that takes two numbers as parameters (x, y)

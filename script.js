@@ -28,6 +28,24 @@ let num2 = {
     }
 }
 
+let operator = {
+    value: undefined,
+    isPresent: function(string) {
+        switch (string) {
+            case (string.includes('+')):
+                return true;
+            case (string.includes('-')):
+                return true;
+            case (string.includes('*')):
+                return true;
+            case (string.includes('/')):
+                return true;
+            default:
+                return false;
+        }
+    }
+}
+
 const add = (x, y) => {
     return x + y;
 }
@@ -82,6 +100,8 @@ numPad.map(button => {
                 num1.value += e.target.innerText;
             }
         }
+        expression.updateVal(e.target.innerText);
+        expression.updateDisplay(e.target.innerText);
     });
 });
 
@@ -94,3 +114,12 @@ operatorKeys.map(button => {
         return e.target.innerText;
     });
 });
+
+// let allKeys = Array.from(document.querySelectorAll('button'));
+
+// allKeys.map(button => {
+//     if (button.classList.contains('operate')) {
+//         continue;
+//     }
+//     button.addEventListener('click', operator.isPresent)
+// });
