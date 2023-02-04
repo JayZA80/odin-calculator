@@ -1,3 +1,10 @@
+(Expression object)
+Create an object for the math expression
+Make a key to store the expression value
+Make a key to store the expression's display screen
+Make a method to update the expression's value
+Make a method to update the expression's display
+
 (Stored numbers/operands)
 Create an object for an operand
 Make a key that stores the object's value
@@ -5,8 +12,6 @@ Make a key that indicates if this is the current number being edited
 Make a method that can set the object's value
 Make a method that clears the object's value
 
-When an operator is present, the active number should switch to the second number
-When an operator is not present, the active number should switch to the first number
 (Operator)
 Create an object for an operator
 Make a key that stores the object's value

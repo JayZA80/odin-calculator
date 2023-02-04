@@ -1,3 +1,18 @@
+let expression = {
+    value: undefined,
+    display: document.querySelector('.displayScreen'),
+    updateVal: function(string) {
+        if (this.value === undefined) {
+            this.value = string;
+        } else {
+            this.value += string;
+        }
+    },
+    updateDisplay: function(string) {
+        this.display.innerText += string;
+    }
+}
+
 let num1 = {
     value: undefined,
     active: true,
@@ -100,8 +115,6 @@ numPad.map(button => {
                 num1.value += e.target.innerText;
             }
         }
-        expression.updateVal(e.target.innerText);
-        expression.updateDisplay(e.target.innerText);
     });
 });
 
@@ -115,11 +128,11 @@ operatorKeys.map(button => {
     });
 });
 
-// let allKeys = Array.from(document.querySelectorAll('button'));
+let eqKeys = Array.from(document.querySelectorAll('.equation'));
 
-// allKeys.map(button => {
-//     if (button.classList.contains('operate')) {
-//         continue;
-//     }
-//     button.addEventListener('click', operator.isPresent)
-// });
+eqKeys.map(button => {
+    button.addEventListener('click', e => {
+        expression.updateVal(e.target.innerText);
+        expression.updateDisplay(e.target.innerText);
+    });
+});
