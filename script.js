@@ -30,20 +30,7 @@ let operator = {
     setValue: function(string) {
         this.value = string;
     },
-    isPresent: function(string) {
-        switch (string) {
-            case (string.includes('+')):
-                return true;
-            case (string.includes('-')):
-                return true;
-            case (string.includes('*')):
-                return true;
-            case (string.includes('/')):
-                return true;
-            default:
-                return false;
-        }
-    }
+    isPresent: false 
 }
 
 const add = (x, y) => {
@@ -101,6 +88,7 @@ numPad.map(button => {
                 num1.value += e.target.innerText;
             }
         }
+        display.append(e.target.innerText);
     });
 });
 
@@ -108,25 +96,22 @@ let operatorKeys = Array.from(document.querySelectorAll('.operator'));
 
 operatorKeys.map(button => {
     button.addEventListener('click', e => {
-        if (result !== undefined) {
-            num1.value = result;
-            num2.value = undefined;
+        if (operator.isPresent === false) {
+            if (result !== undefined) {
+                num1.value = result;
+                num2.value = undefined;
+            }
+            num2.active = true;
+            num1.active = false;
+            operator.setValue(e.target.innerText);
+            display.append(e.target.innerText)
+            operator.isPresent = true;
         }
-        num2.active = true;
-        num1.active = false;
-        operator.setValue(e.target.innerText);
-    });
-});
-
-let eqKeys = Array.from(document.querySelectorAll('.equation'));
-
-eqKeys.map(button => {
-    button.addEventListener('click', e => {
-        display.append(e.target.innerText);
     });
 });
 
 let operateBtn = document.querySelector('.operate');
 operateBtn.addEventListener('click', () => {
     operate(num1.value, num2.value, operator.value);
+    operator.isPresent = false;
 });
