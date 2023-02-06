@@ -15,7 +15,7 @@ Make a method that clears the object's value
 (Operator)
 Create an object for an operator
 Make a key that stores the object's value
-Make a method that returns true or false to check if an operator is present in the operation
+Make a key that tells whether an operator is defined or not
 
 (Add function)
 Declare a function that takes two numbers as parameters (x, y)
