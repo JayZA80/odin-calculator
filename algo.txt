@@ -42,3 +42,9 @@ Run Subtract function if "-" was given with x and y as the numbers
 Run Multiply function if "*" was given with x and y as the numbers
 Run Divide function if "/" was given with x and y as the numbers
 Return the result
+
+(Chaining operations)
+When an operator is clicked:
+If result is defined:
+Use the result as number 1
+Remove the value from number 2
