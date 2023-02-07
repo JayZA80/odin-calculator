@@ -86,6 +86,9 @@ let numPad = Array.from(document.querySelectorAll('.number'));
 
 numPad.map(button => {
     button.addEventListener('click', e => {
+        if (result !== undefined) {
+            clear();
+        }
         if (num2.active === true) {
             if (num2.value === undefined) {
                 num2.setValue(e.target.innerText);
@@ -111,6 +114,7 @@ operatorKeys.map(button => {
             if (result !== undefined) {
                 num1.value = result;
                 num2.value = undefined;
+                result = undefined;
             }
             num2.active = true;
             num1.active = false;
