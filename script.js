@@ -46,29 +46,40 @@ const multiply = (x, y) => {
 }
 
 const divide = (x, y) => {
-    return x / y;
+    if (x === 0 || y === 0) {
+        alert('You can\'t divide by 0 you silly!');
+        clear();
+    } else {
+        return x / y;
+    }
 }
 
 const operate = (x, y, operator) => {
-    let firstNum = parseInt(x);
-    let secondNum = parseInt(y);
-    switch (operator) {
-        case '+':
-            result = add(firstNum, secondNum);
-            break;
-        case '-':
-            result = subtract(firstNum, secondNum);
-            break;
-        case '*':
-            result = multiply(firstNum, secondNum);
-            break;
-        case '/':
-            result = divide(firstNum, secondNum);
-            break;
-        default:
-            result = console.log('Something went wrong with calculating...');
+    if (x !== undefined && y !== undefined && operator !== undefined) {
+        let firstNum = parseInt(x);
+        let secondNum = parseInt(y);
+        switch (operator) {
+            case '+':
+                result = add(firstNum, secondNum);
+                break;
+            case '-':
+                result = subtract(firstNum, secondNum);
+                break;
+            case '*':
+                result = multiply(firstNum, secondNum);
+                break;
+            case '/':
+                result = divide(firstNum, secondNum);
+                break;
+            default:
+                result = console.log('Something went wrong with calculating...');
+        }
+        if (result !== undefined) {
+            display.update(result.toString());
+        } else {
+            display.update('');
+        }
     }
-    display.update(result.toString());
 }
 
 const clear = () => {
@@ -111,16 +122,18 @@ let operatorKeys = Array.from(document.querySelectorAll('.operator'));
 operatorKeys.map(button => {
     button.addEventListener('click', e => {
         if (operator.isPresent === false) {
-            if (result !== undefined) {
-                num1.value = result;
-                num2.value = undefined;
-                result = undefined;
+            if (num1.value !== undefined) {
+                if (result !== undefined) {
+                    num1.value = result;
+                    num2.value = undefined;
+                    result = undefined;
+                }
+                num2.active = true;
+                num1.active = false;
+                operator.setValue(e.target.innerText);
+                display.append(e.target.innerText)
+                operator.isPresent = true;
             }
-            num2.active = true;
-            num1.active = false;
-            operator.setValue(e.target.innerText);
-            display.append(e.target.innerText)
-            operator.isPresent = true;
         }
     });
 });
