@@ -1,12 +1,12 @@
 let result = undefined;
 
 const display = {
-    value: document.querySelector('.displayScreen'),
+    element: document.querySelector('.displayScreen'),
     append: function(string) {
-        this.value.innerText += string;
+        this.element.innerText += string;
     },
     update: function(string) {
-        this.value.innerText = string;
+        this.element.innerText = string;
     }
 }
 let num1 = {
@@ -71,6 +71,17 @@ const operate = (x, y, operator) => {
     display.update(result.toString());
 }
 
+const clear = () => {
+    num1.value = undefined;
+    num2.value = undefined;
+    result = undefined;
+    operator.value = undefined;
+    num1.active = true;
+    num2.active = false;
+    operator.isPresent = false;
+    display.update('');
+}
+
 let numPad = Array.from(document.querySelectorAll('.number'));
 
 numPad.map(button => {
@@ -115,3 +126,5 @@ operateBtn.addEventListener('click', () => {
     operate(num1.value, num2.value, operator.value);
     operator.isPresent = false;
 });
+
+document.getElementById('clear').addEventListener('click', clear);
